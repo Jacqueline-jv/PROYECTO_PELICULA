@@ -1,0 +1,72 @@
+[
+    {
+      "titulo": "La Matrix",
+      "descripcion": "Un hacker descubre la verdad oculta de su realidad y lucha contra un sistema controlado por máquinas.",
+      "año": 1999,
+      "director": "Lana Wachowski, Lilly Wachowski",
+      "genero": "Ciencia Ficción, Acción",
+      "productora": "Warner Bros.",
+      "tipo": "Película de Acción",
+      "media": "Matrix.jpeg"
+    },
+    {
+      "titulo": "La Momia",
+      "descripcion": "Un explorador despierta una antigua maldición y debe enfrentarse a fuerzas sobrenaturales.",
+      "año": 1999,
+      "director": "Stephen Sommers",
+      "genero": "Aventura, Acción",
+      "productora": "Universal Pictures",
+      "tipo": "Aventura",
+      "media": "La momia.jpeg"
+    },
+    {
+      "titulo": "Shrek",
+      "descripcion": "Un ogro se embarca en una aventura inesperada para recuperar su hogar y descubre el verdadero significado de la amistad.",
+      "año": 2001,
+      "director": "Andrew Adamson, Vicky Jenson",
+      "genero": "Animación, Comedia",
+      "productora": "DreamWorks Animation",
+      "tipo": "Animación",
+      "media": "Shrek.jpeg"
+    },
+    {
+      "titulo": "Piratas del Caribe",
+      "descripcion": "Un capitán pirata carismático busca recuperar su barco robado y enfrenta peligros en alta mar.",
+      "año": 2003,
+      "director": "Gore Verbinski",
+      "genero": "Aventura, Fantasía",
+      "productora": "Walt Disney Pictures",
+      "tipo": "Aventura",
+      "media": "Piratas del caribe.jpeg"
+    },
+    {
+      "titulo": "Norbit",
+      "descripcion": "Un hombre tímido se ve envuelto en situaciones cómicas mientras trata de escapar de una vida opresiva.",
+      "año": 2007,
+      "director": "Brian Robbins",
+      "genero": "Comedia",
+      "productora": "DreamWorks Pictures",
+      "tipo": "Comedia",
+      "media": "Norbit.jpeg"
+    },
+    {
+      "titulo": "El Padrino",
+      "descripcion": "La historia de la familia Corleone y sus oscuros negocios en el mundo del crimen organizado.",
+      "año": 1972,
+      "director": "Francis Ford Coppola",
+      "genero": "Crimen, Drama",
+      "productora": "Paramount Pictures",
+      "tipo": "Crimen",
+      "media": "El padrino.jpeg"
+    },
+    {
+      "titulo": "Interstellar",
+      "descripcion": "Un grupo de astronautas viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
+      "año": 2014,
+      "director": "Christopher Nolan",
+      "genero": "Ciencia Ficción, Drama",
+      "productora": "Paramount Pictures",
+      "tipo": "Ciencia Ficción",
+      "media": "interstellar.jpeg"
+    }
+  ]
