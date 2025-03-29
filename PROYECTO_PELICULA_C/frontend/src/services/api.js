@@ -1,13 +1,10 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:5000';
-
-export const getMovies = async () => {
+export const getMovieById = async (id) => {
     try {
-        const response = await axios.get(`${API_URL}/peliculas`);
+        const response = await axios.get(`http://localhost:5000/api/peliculas/${id}`);
         return response.data;
     } catch (error) {
-        console.error('Error al obtener las películas:', error);
-        return [];
+        console.error('Error al obtener la película:', error);
+        return null;
     }
 };
+
