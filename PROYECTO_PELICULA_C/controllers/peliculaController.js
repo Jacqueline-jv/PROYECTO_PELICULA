@@ -2,12 +2,13 @@ import Pelicula from '../models/Pelicula.js';
 
 export const obtenerPeliculas = async (req, res) => {
     try {
-        const peliculas = await Pelicula.find()
-            .populate('director')
-            .populate('genero')
-            .populate('productora')
-            .populate('tipo')
-            .populate('media');
+        const peliculas = await Pelicula.find().populate([
+            { path: 'director', select: 'nombre' },
+            { path: 'genero', select: 'nombre' },
+            { path: 'productora', select: 'nombre' },
+            { path: 'tipo', select: 'nombre' },
+            { path: 'media', select: 'nombre' }
+        ]);
 
         res.json(peliculas);
     } catch (error) {
@@ -23,7 +24,17 @@ export const crearPelicula = async (req, res) => {
             return res.status(400).json({ mensaje: 'Todos los campos obligatorios deben estar completos' });
         }
 
-        const nuevaPelicula = new Pelicula(req.body);
+        const nuevaPelicula = new Pelicula({
+            titulo,
+            director,
+            genero,
+            productora,
+            descripcion,
+            año: Number(año),
+            duracion: Number(duracion),
+            imagen
+        });
+        
         await nuevaPelicula.save();
         res.status(201).json(nuevaPelicula);
     } catch (error) {

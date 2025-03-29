@@ -11,10 +11,12 @@ import Media from './models/Media.js';
 import Pelicula from './models/Pelicula.js';
 
 dotenv.config();
-await connectDB();
 
 const importarPeliculas = async () => {
   try {
+    console.log("🔗 Conectando a MongoDB...");
+    await connectDB();
+
     console.log("📥 Importando películas...");
 
     // Obtener los IDs de las relaciones
@@ -25,7 +27,8 @@ const importarPeliculas = async () => {
     const medias = await Media.find();
 
     if (!directores.length || !generos.length || !productoras.length || !tipos.length || !medias.length) {
-      console.log("❌ Error: Faltan datos relacionados.");
+      console.log("❌ Error: Faltan datos relacionados en la base de datos.");
+      mongoose.disconnect();
       process.exit(1);
     }
 
@@ -35,7 +38,7 @@ const importarPeliculas = async () => {
         descripcion: "Un hacker descubre la verdad oculta de su realidad y lucha contra un sistema controlado por máquinas.",
         año: 1999,
         director: directores[0]._id,
-        genero: [generos[0]._id, generos[1]._id],
+        genero: generos.slice(0, 2).map(g => new mongoose.Types.ObjectId(g._id)), // Conversión a ObjectId
         productora: productoras[0]._id,
         tipo: tipos[0]._id,
         media: medias[0]._id
@@ -45,7 +48,7 @@ const importarPeliculas = async () => {
         descripcion: "Un grupo de astronautas viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
         año: 2014,
         director: directores[1]._id,
-        genero: [generos[0]._id, generos[2]._id],
+        genero: generos.slice(1, 3).map(g => new mongoose.Types.ObjectId(g._id)), // Conversión a ObjectId
         productora: productoras[1]._id,
         tipo: tipos[1]._id,
         media: medias[1]._id
@@ -54,9 +57,12 @@ const importarPeliculas = async () => {
 
     await Pelicula.insertMany(peliculas);
     console.log("✅ Películas importadas correctamente.");
-    process.exit();
+
+    mongoose.disconnect();
+    process.exit(0);
   } catch (error) {
     console.error("❌ Error al importar películas:", error);
+    mongoose.disconnect();
     process.exit(1);
   }
 };
