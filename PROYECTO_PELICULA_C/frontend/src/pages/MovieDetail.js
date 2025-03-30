@@ -8,8 +8,11 @@ const MovieDetail = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:5000/api/peliculas/${id}`)
-      .then(response => setMovie(response.data))
-      .catch(error => console.error("Error fetching movie details:", error));
+      .then(response => {
+        console.log("Detalles de la película:", response.data);
+        setMovie(response.data);
+      })
+      .catch(error => console.error("Error al obtener detalles de la película:", error));
   }, [id]);
 
   if (!movie) {
@@ -20,7 +23,7 @@ const MovieDetail = () => {
     <div className="min-h-screen bg-gray-900 text-white flex justify-center items-center p-6">
       <div className="max-w-4xl bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col md:flex-row">
         <img 
-          src={`/images/${movie.media}`} 
+          src={`http://localhost:5000/uploads/${movie.media}`} 
           alt={movie.titulo} 
           className="w-full md:w-1/3 rounded-lg shadow-md object-cover"
         />
@@ -39,4 +42,3 @@ const MovieDetail = () => {
 };
 
 export default MovieDetail;
-
