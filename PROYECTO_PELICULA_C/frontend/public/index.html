@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Aplicación web para gestión de películas y series" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Gestor de Películas" />
-    <meta property="og:description" content="Explora y administra tu catálogo de películas y series favoritas." />
-    <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Gestor de Películas" />
-    <meta property="twitter:description" content="Explora y administra tu catálogo de películas y series favoritas." />
-    <meta property="twitter:image" content="%PUBLIC_URL%/logo192.png" />
-
-    <!-- Íconos y manifest -->
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-
-    <title>Gestor de Películas</title>
-  </head>
-  <body>
-    <noscript>Necesitas habilitar JavaScript para ejecutar esta aplicación.</noscript>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Galería de Imágenes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .gallery img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Galería de Imágenes</h1>
+  <div class="gallery">
+    <!-- Usa URL encoding para espacios -->
+    <img src="El%20padrino.jpeg" alt="El padrino">
+    <img src="Onterstellar.jpeg" alt="Onterstellar">
+    <img src="La%20momia.jpeg" alt="La momia">
+    <img src="Matrix.jpeg" alt="Matrix">
+    <img src="Norbit.jpeg" alt="Norbit">
+    <img src="Piratas%20del%20caribe.jpeg" alt="Piratas del caribe">
+    <img src="shrek.jpeg" alt="Shrek">
+  </div>
+</body>
 </html>
