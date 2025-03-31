@@ -28,11 +28,9 @@ app.use(cors());
 // Definir __dirname (para ES modules)
 const __dirname = path.resolve();
 
-// Servir archivos estáticos:
-// - Desde "uploads" para archivos subidos
+// Servir archivos estáticos (ajustando la ruta de imágenes según la nueva ubicación)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// - Desde "data" para las imágenes y archivos JSON (como peliculas.json)
-app.use('/data', express.static(path.join(__dirname, 'data')));
+app.use('/public/images', express.static(path.join(__dirname, 'frontend/public/public/images')));
 
 // Rutas de la API
 app.use('/api/directores', directoresRoutes);
