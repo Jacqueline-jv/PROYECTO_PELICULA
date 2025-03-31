@@ -7,7 +7,7 @@ export const obtenerPeliculas = async (req, res) => {
             { path: 'genero', select: 'nombre' },
             { path: 'productora', select: 'nombre' },
             { path: 'tipo', select: 'nombre' },
-            { path: 'media', select: 'nombre' }
+            { path: 'media', select: 'url' }
         ]);
 
         res.json(peliculas);

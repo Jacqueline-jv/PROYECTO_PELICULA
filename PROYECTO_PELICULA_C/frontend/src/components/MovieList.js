@@ -9,8 +9,13 @@ const MovieList = () => {
 
     useEffect(() => {
         const fetchMovies = async () => {
-            const data = await getMovies();
-            setMovies(data);
+            try {
+                const data = await getMovies();
+                console.log("Películas obtenidas:", data);
+                setMovies(data);
+            } catch (error) {
+                console.error("Error al obtener películas:", error);
+            }
         };
         fetchMovies();
     }, []);
@@ -19,7 +24,7 @@ const MovieList = () => {
         <div className="movie-container">
             {movies.map((movie) => (
                 <div key={movie._id} className="movie-card" onClick={() => navigate(`/movie/${movie._id}`)}>
-                    <img src={movie.imagen} alt={movie.titulo} />
+                    <img src={`http://localhost:5000/uploads/${movie.media}`} alt={movie.titulo} />
                     <h3>{movie.titulo}</h3>
                 </div>
             ))}
