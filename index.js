@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import connectDB from './config/db.js';
 import path from 'path';
+import connectDB from './config/db.js';
 
 // Importar rutas
 import directoresRoutes from './routes/directoresRoutes.js';
@@ -28,9 +28,8 @@ app.use(cors());
 // Definir __dirname (para ES modules)
 const __dirname = path.resolve();
 
-// Servir archivos estáticos (ajustando la ruta de imágenes según la nueva ubicación)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/public/images', express.static(path.join(__dirname, 'frontend/public/public/images')));
+// Servir archivos estáticos correctamente
+app.use('/images', express.static(path.join(__dirname, 'frontend/public/images')));
 
 // Rutas de la API
 app.use('/api/directores', directoresRoutes);
@@ -50,4 +49,4 @@ app.use(errorHandler);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Servidor corriendo en el puerto ${PORT}`));
