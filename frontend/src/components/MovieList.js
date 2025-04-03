@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { getMovies } from '../services/api';
-import { useNavigate } from 'react-router-dom';
-import '../styles/MovieList.css';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./MovieList.css";
 
 const MovieList = () => {
-    const [movies, setMovies] = useState([]);
-    const navigate = useNavigate();
+  const [movies, setMovies] = useState([]);
 
-    useEffect(() => {
-        const fetchMovies = async () => {
-            try {
-                const data = await getMovies();
-                console.log("Películas obtenidas:", data);
-                setMovies(data);
-            } catch (error) {
-                console.error("Error al obtener películas:", error);
-            }
-        };
-        fetchMovies();
-    }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/peliculas") // Asegúrate de que esta URL es correcta
+      .then((response) => setMovies(response.data))
+      .catch((error) => console.error("Error al obtener las películas", error));
+  }, []);
 
-    return (
-        <div className="movie-container">
-            {movies.map((movie) => (
-                <div key={movie._id} className="movie-card" onClick={() => navigate(`/movie/${movie._id}`)}>
-                    <img src={`http://localhost:5000/uploads/${movie.media}`} alt={movie.titulo} />
-                    <h3>{movie.titulo}</h3>
-                </div>
-            ))}
-        </div>
-    );
+  return (
+    <div className="movie-container">
+      {movies.map((movie) => (
+        <Link to={`/movie/${movie._id}`} key={movie._id} className="movie-card">
+          <img src={movie.imagen} alt={movie.titulo} />
+          <h3>{movie.titulo}</h3>
+        </Link>
+      ))}
+    </div>
+  );
 };
 
 export default MovieList;
