@@ -318,7 +318,7 @@
     "react-error-overlay": "^6.1.0",
     "react-is": "^17.0.2",
     "react-router-dom": "^7.4.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^3.4.4",
     "read-pkg": "^2.0.0",
     "read-pkg-up": "^2.0.0",
     "readable-stream": "^2.3.8",
