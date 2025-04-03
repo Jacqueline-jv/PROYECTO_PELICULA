@@ -2,22 +2,17 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const peliculaSchema = new Schema({
-  titulo: { type: String, required: true },
-  descripcion: String,
-  año: Number,
-  duracion: Number,
-  director: { nombre: String },
-  genero: { nombre: String },
-  productora: { nombre: String },
-  tipo: { nombre: String },
-  media: {
-    url: { type: String, required: true } // Campo para la URL de la imagen
-  }
-  // otros campos según sea necesario
+const PeliculaSchema = new Schema({
+    titulo: { type: String, required: true },
+    descripcion: String,
+    año: Number,
+    duracion: Number,
+    director: { type: Schema.Types.ObjectId, ref: 'Director' },
+    genero: { type: Schema.Types.ObjectId, ref: 'Genero' },
+    productora: { type: Schema.Types.ObjectId, ref: 'Productora' },
+    tipo: { type: Schema.Types.ObjectId, ref: 'Tipo' },
+    media: { type: Schema.Types.ObjectId, ref: 'Media' }
 }, { timestamps: true });
 
-// Usar el modelo ya compilado si existe, o crearlo de lo contrario
-const Pelicula = mongoose.models.Pelicula || mongoose.model('Pelicula', peliculaSchema);
-
+const Pelicula = mongoose.model('Pelicula', PeliculaSchema);
 export default Pelicula;
