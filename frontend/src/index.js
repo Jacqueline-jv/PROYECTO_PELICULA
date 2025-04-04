@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import "./index.css";  // Importación de Tailwind CSS
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
+const root = document.getElementById("root");
+
+if (root) {
+  const reactRoot = ReactDOM.createRoot(root);
+  reactRoot.render(
+    <React.StrictMode>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
+    </React.StrictMode>
+  );
+} else {
+  console.error("No se encontró el contenedor #root en index.html");
+}
