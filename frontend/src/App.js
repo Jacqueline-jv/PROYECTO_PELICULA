@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";  
 import Home from "./pages/Home";  
 import MovieDetail from "./pages/MovieDetail";  
-import Peliculas from "./components/Peliculas";  
+import Peliculas from "./pages/Peliculas";  
+import NuevaPelicula from "./pages/NuevaPelicula";  
 import "./index.css";  
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/peliculas" element={<Peliculas />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
+            <Route path="/nueva" element={<NuevaPelicula />} />
           </Routes>
         </div>
       </div>
@@ -24,3 +26,4 @@ const App = () => {
 };
 
 export default App;
+
