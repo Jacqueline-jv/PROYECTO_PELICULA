@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar"; // Corrige el nombre si es necesario
-import Home from "./pages/Home";
-import MovieDetail from "./pages/MovieDetail";
-import Peliculas from "./components/Peliculas";
-import "./index.css"; // Asegúrate de que Tailwind está en este archivo
+import Navbar from "./components/Navbar";  
+import Home from "./pages/Home";  
+import MovieDetail from "./pages/MovieDetail";  
+import Peliculas from "./components/Peliculas";  
+import "./index.css";  
 
 const App = () => {
   return (
@@ -14,8 +14,8 @@ const App = () => {
         <div className="container mx-auto p-4">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/movie/:id" element={<MovieDetail />} />
             <Route path="/peliculas" element={<Peliculas />} />
+            <Route path="/movie/:id" element={<MovieDetail />} />
           </Routes>
         </div>
       </div>

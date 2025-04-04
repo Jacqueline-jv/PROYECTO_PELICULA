@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Peliculas() {
   const [peliculas, setPeliculas] = useState([]);
@@ -31,17 +32,23 @@ function Peliculas() {
         value={filtro}
         onChange={(e) => setFiltro(e.target.value)}
       />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {peliculasFiltradas.map((pelicula) => (
           <div key={pelicula._id} className="border p-4 rounded-xl bg-gray-800 text-white">
-            <img src={pelicula.media?.url} alt={pelicula.titulo} className="w-full h-60 object-cover rounded-md" />
+            <Link to={`/movie/${pelicula._id}`}>
+              <img
+                src={`http://localhost:5000/uploads/${pelicula.media}`}
+                alt={pelicula.titulo}
+                className="w-full h-60 object-cover rounded-md"
+              />
+            </Link>
             <h2 className="text-xl font-bold mt-2">{pelicula.titulo}</h2>
             <p className="text-sm">{pelicula.descripcion}</p>
             <p className="text-xs">Año: {pelicula.año} | Duración: {pelicula.duracion} min</p>
-            <p className="text-xs">Director: {pelicula.director?.nombre}</p>
-            <p className="text-xs">Género: {pelicula.genero?.nombre}</p>
-            <p className="text-xs">Productora: {pelicula.productora?.nombre}</p>
-            <p className="text-xs">Tipo: {pelicula.tipo?.nombre}</p>
+            <p className="text-xs">Director: {pelicula.director}</p>
+            <p className="text-xs">Género: {pelicula.genero}</p>
+            <p className="text-xs">Productora: {pelicula.productora}</p>
+            <p className="text-xs">Tipo: {pelicula.tipo}</p>
           </div>
         ))}
       </div>
