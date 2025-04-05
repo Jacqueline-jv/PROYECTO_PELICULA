@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";  
 import Peliculas from "./pages/Peliculas";  
 import NuevaPelicula from "./pages/NuevaPelicula";  
+import Gallery from "./components/Gallery";  // Importar la galería
 import "./index.css";  
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/peliculas" element={<Peliculas />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
             <Route path="/nueva" element={<NuevaPelicula />} />
+            <Route path="/galeria" element={<Gallery />} />  {/* Nueva ruta para la galería */}
           </Routes>
         </div>
       </div>

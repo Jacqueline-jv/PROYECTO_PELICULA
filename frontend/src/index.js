@@ -5,7 +5,5 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <h1 style={{ textAlign: "center", color: "red" }}>React está funcionando</h1>
 );
