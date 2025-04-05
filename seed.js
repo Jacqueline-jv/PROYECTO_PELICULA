@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 
-// Importar modelos
 import Director from './models/Director.js';
 import Genero from './models/Genero.js';
 import Productora from './models/Productora.js';
@@ -17,7 +16,10 @@ const seedDatabase = async () => {
   try {
     console.log("🌱 Iniciando inserción de datos...");
 
-    // Buscar los ObjectId de cada entidad
+    // Limpiar colección de películas (opcional)
+    await Pelicula.deleteMany({});
+
+    // Buscar documentos relacionados
     const director1 = await Director.findOne({ nombre: "Lana Wachowski" });
     const director2 = await Director.findOne({ nombre: "Stephen Sommers" });
     const director3 = await Director.findOne({ nombre: "Andrew Adamson" });
@@ -54,13 +56,11 @@ const seedDatabase = async () => {
     const media6 = await Media.findOne({ archivo: "El padrino.jpeg" });
     const media7 = await Media.findOne({ archivo: "interstellar.jpeg" });
 
-    // Validar que se encontraron todos los documentos
     if (!director1 || !genero1 || !productora1 || !tipo1 || !media1) {
       console.log("❌ Error: No se encontraron algunos documentos relacionados.");
       process.exit(1);
     }
 
-    // Crear películas con los ObjectId correctos
     const peliculas = [
       {
         titulo: "La Matrix",
@@ -70,7 +70,7 @@ const seedDatabase = async () => {
         genero: [genero1._id, genero2._id],
         productora: productora1._id,
         tipo: tipo1._id,
-        media: media1._id
+        media: media1.archivo
       },
       {
         titulo: "La Momia",
@@ -80,7 +80,7 @@ const seedDatabase = async () => {
         genero: [genero3._id, genero2._id],
         productora: productora2._id,
         tipo: tipo2._id,
-        media: media2._id
+        media: media2.archivo
       },
       {
         titulo: "Shrek",
@@ -90,7 +90,7 @@ const seedDatabase = async () => {
         genero: [genero3._id, genero4._id],
         productora: productora3._id,
         tipo: tipo3._id,
-        media: media3._id
+        media: media3.archivo
       },
       {
         titulo: "Piratas del Caribe",
@@ -100,7 +100,7 @@ const seedDatabase = async () => {
         genero: [genero3._id, genero6._id],
         productora: productora4._id,
         tipo: tipo2._id,
-        media: media4._id
+        media: media4.archivo
       },
       {
         titulo: "Norbit",
@@ -110,7 +110,7 @@ const seedDatabase = async () => {
         genero: [genero4._id],
         productora: productora3._id,
         tipo: tipo4._id,
-        media: media5._id
+        media: media5.archivo
       },
       {
         titulo: "El Padrino",
@@ -120,7 +120,7 @@ const seedDatabase = async () => {
         genero: [genero5._id, genero6._id],
         productora: productora5._id,
         tipo: tipo5._id,
-        media: media6._id
+        media: media6.archivo
       },
       {
         titulo: "Interstellar",
@@ -130,14 +130,12 @@ const seedDatabase = async () => {
         genero: [genero1._id, genero6._id],
         productora: productora5._id,
         tipo: tipo6._id,
-        media: media7._id
+        media: media7.archivo
       }
     ];
 
-    // Insertar en la base de datos
     await Pelicula.insertMany(peliculas);
     console.log("✅ Base de datos poblada correctamente");
-
     process.exit();
   } catch (error) {
     console.error("❌ Error al poblar la base de datos:", error);

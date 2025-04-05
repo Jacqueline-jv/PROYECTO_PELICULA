@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="bg-black p-4 text-white flex justify-between">
-      <h1 className="text-xl">🎬 Mi Aplicación de Películas</h1>
+      <h1 className="text-xl">🎥 Cinema Mis Películas 🎞️ </h1>
       <input
         type="text"
         placeholder="Buscar película..."

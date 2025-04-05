@@ -46,7 +46,7 @@ function Peliculas() {
           <div key={pelicula._id} className="border p-4 rounded-xl bg-gray-800 text-white">
             <Link to={`/movie/${pelicula._id}`} className="block">
               <img
-                src={`http://localhost:5000/uploads/${pelicula.media}`}
+                src={`/images/${pelicula.media}`}
                 alt={pelicula.titulo}
                 className="w-full h-60 object-cover rounded-md"
               />
@@ -66,5 +66,3 @@ function Peliculas() {
 }
 
 export default Peliculas;
-
-

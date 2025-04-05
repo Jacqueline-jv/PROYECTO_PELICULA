@@ -1,43 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Gallery = () => {
-  const images = [
-    "El padrino.jpeg",
-    "Interstellar.jpeg",
-    "La momia.jpeg",
-    "Matrix.jpeg",
-    "Norbit.jpeg",
-    "Piratas del caribe.jpeg",
-    "shrek.jpeg",
-  ];
+  const [peliculas, setPeliculas] = useState([]);
+
+  useEffect(() => {
+    const obtenerPeliculas = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/peliculas");
+        setPeliculas(response.data);
+      } catch (error) {
+        console.error("Error al obtener las películas:", error);
+      }
+    };
+
+    obtenerPeliculas();
+  }, []);
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "#111", minHeight: "100vh" }}>
-      <h1 style={{ color: "white", textAlign: "center", marginBottom: "20px" }}>Galería de Imágenes</h1>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "20px",
-          justifyContent: "center",
-        }}
-      >
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={`/images/${image}`}
-            alt={`Imagen ${index + 1}`}
-            style={{
-              width: "200px",
-              height: "auto",
-              border: "2px solid white",
-              borderRadius: "8px",
-            }}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "https://via.placeholder.com/200x300?text=No+Image";
-            }}
-          />
+    <div className="p-4 bg-gray-900 min-h-screen text-white">
+      <h1 className="text-3xl font-bold text-center mb-8">Galería de Películas</h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {peliculas.map((pelicula) => (
+          <Link
+            key={pelicula._id}
+            to={`/movie/${pelicula._id}`}
+            className="bg-gray-800 rounded-lg p-4 hover:shadow-lg hover:bg-gray-700 transition duration-300"
+          >
+            <img
+              src={pelicula.imagen}
+              alt={pelicula.titulo}
+              className="w-full h-64 object-cover rounded mb-4"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "https://via.placeholder.com/200x300?text=No+Image";
+              }}
+            />
+            <h2 className="text-xl font-semibold mb-1">{pelicula.titulo}</h2>
+            <p className="text-sm mb-1">{pelicula.descripcion}</p>
+            <p className="text-sm">🎬 Año: {pelicula.año} | ⏱️ {pelicula.duracion} min</p>
+            <p className="text-sm">🎥 Director: {pelicula.director?.nombre || 'N/A'}</p>
+            <p className="text-sm">🎭 Género: {pelicula.genero?.nombre || 'N/A'}</p>
+            <p className="text-sm">🏢 Productora: {pelicula.productora?.nombre || 'N/A'}</p>
+            <p className="text-sm">📺 Tipo: {pelicula.tipo?.nombre || 'N/A'}</p>
+          </Link>
         ))}
       </div>
     </div>
@@ -45,5 +52,6 @@ const Gallery = () => {
 };
 
 export default Gallery;
+
 
 

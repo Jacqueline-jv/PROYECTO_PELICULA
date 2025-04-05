@@ -86,7 +86,7 @@ const Home = () => {
               className="bg-gray-800 p-4 rounded-xl shadow hover:shadow-xl transition duration-300"
             >
               <img
-                src={`http://localhost:5000/images/${movie.media}`}
+                src={`/images/${movie.media}`}
                 alt={movie.titulo}
                 className="w-full h-60 object-cover rounded-md mb-2"
               />
@@ -110,6 +110,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
