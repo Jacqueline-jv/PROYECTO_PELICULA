@@ -1,29 +1,43 @@
 import React from "react";
 
-const images = [
-  { name: "El padrino", src: "/images/El padrino.jpeg" },
-  { name: "Interstellar", src: "/images/Interstellar.jpeg" },
-  { name: "La momia", src: "/images/La momia.jpeg" },
-  { name: "Matrix", src: "/images/Matrix.jpeg" },
-  { name: "Norbit", src: "/images/Norbit.jpeg" },
-  { name: "Piratas del Caribe", src: "/images/Piratas del caribe.jpeg" },
-  { name: "Shrek", src: "/images/shrek.jpeg" },
-];
-
 const Gallery = () => {
+  const images = [
+    "El padrino.jpeg",
+    "Interstellar.jpeg",
+    "La momia.jpeg",
+    "Matrix.jpeg",
+    "Norbit.jpeg",
+    "Piratas del caribe.jpeg",
+    "shrek.jpeg",
+  ];
+
   return (
-    <div className="bg-gray-900 min-h-screen text-white p-4">
-      <h1 className="text-2xl font-bold mb-4">Galería de Imágenes</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div style={{ padding: "20px", backgroundColor: "#111", minHeight: "100vh" }}>
+      <h1 style={{ color: "white", textAlign: "center", marginBottom: "20px" }}>Galería de Imágenes</h1>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          justifyContent: "center",
+        }}
+      >
         {images.map((image, index) => (
-          <div key={index} className="bg-gray-800 p-2 rounded-lg">
-            <img
-              src={image.src}
-              alt={image.name}
-              className="w-full h-48 object-cover rounded-md"
-            />
-            <p className="text-center mt-2">{image.name}</p>
-          </div>
+          <img
+            key={index}
+            src={`/images/${image}`}
+            alt={`Imagen ${index + 1}`}
+            style={{
+              width: "200px",
+              height: "auto",
+              border: "2px solid white",
+              borderRadius: "8px",
+            }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://via.placeholder.com/200x300?text=No+Image";
+            }}
+          />
         ))}
       </div>
     </div>
@@ -31,3 +45,5 @@ const Gallery = () => {
 };
 
 export default Gallery;
+
+
