@@ -12,7 +12,7 @@ const Navbar = () => {
       />
       <div>
         <Link to="/" className="px-4">Inicio</Link>
-        <Link to="/galeria" className="px-4">Galería</Link> {/* Nuevo enlace */}
+        <Link to="/galeria" className="px-4">Galería</Link> {}
       </div>
     </nav>
   );
